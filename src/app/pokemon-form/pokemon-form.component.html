@@ -1,0 +1,55 @@
+<h3 class="text-center">Nuevo Pokemon</h3>
+<form [formGroup]="pokemonForm" (submit)="onSubmit()">
+    <div fxLayout="row">
+        <div fxFlex="50" class="pokemon-form">
+            <p class="text-right">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="Escriba un nombre" formControlName="name">
+                </mat-form-field>
+            </p>
+        </div>
+        <div fxFlex="50" class="pokemon-form text-left">
+            <p>Hitpoints</p>
+            <mat-slider thumbLabel tickInterval="1" formControlName="hp"></mat-slider>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="50" class="pokemon-form">
+            <p class="text-right">
+                <mat-form-field appearance="outline">
+                    <mat-label>Imagen</mat-label>
+                    <input matInput placeholder="Escriba una URL" formControlName="image">
+                </mat-form-field>
+            </p>
+        </div>
+        <div fxFlex="50" class="pokemon-form text-left">
+            <p>Ataque</p>
+            <mat-slider thumbLabel tickInterval="1" formControlName="attack"></mat-slider>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="50" class="pokemon-form">
+            <p class="text-right">
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option *ngFor="let type of types" [value]="type.toLowerCase()">{{type}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+        </div>
+        <div fxFlex="50" class="pokemon-form text-left">
+            <p>Defensa</p>
+            <mat-slider thumbLabel tickInterval="1" formControlName="defense"></mat-slider>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="50" class="text-right">
+            <button mat-flat-button color="primary" type="submit">Guardar</button>
+        </div>
+        <div fxFlex="50" class="text-left">
+            <button mat-flat-button color="warn">Cancelar</button>
+        </div>
+    </div>
+</form>

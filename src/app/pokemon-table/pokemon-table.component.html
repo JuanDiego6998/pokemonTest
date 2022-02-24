@@ -1,0 +1,36 @@
+<table mat-table [dataSource]="pokemonsToDisplay" class="mat-elevation-z8 text-left">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> Imagen </th>
+    <td mat-cell *matCellDef="let element"> <img src="{{element.image}}" alt="{{element.image}}"> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="attack">
+    <th mat-header-cell *matHeaderCellDef> Ataque </th>
+    <td mat-cell *matCellDef="let element"> {{element.attack}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="defense">
+    <th mat-header-cell *matHeaderCellDef> Defensa </th>
+    <td mat-cell *matCellDef="let element"> {{element.defense}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element">
+      <a (click)="onEdit(element)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+      </a>
+      <a (click)="onDelete(element)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
