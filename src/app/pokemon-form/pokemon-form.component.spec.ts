@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PokemonFormComponent } from './pokemon-form.component';
 
 describe('PokemonFormComponent', () => {
@@ -8,7 +8,8 @@ describe('PokemonFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonFormComponent ]
+      declarations: [ PokemonFormComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   });

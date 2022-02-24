@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PokemonTableComponent } from './pokemon-table.component';
 
 describe('PokemonTableComponent', () => {
@@ -8,7 +8,8 @@ describe('PokemonTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonTableComponent ]
+      declarations: [ PokemonTableComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   });

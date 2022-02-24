@@ -9,7 +9,7 @@ import { Pokemon } from './pokemon-table/pokemon.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'pokemonTest';
+  title = 'Listado de Pokemon';
   searchTerm = '';
   showForm = false;
   pokemonToEdit: Pokemon | null = null;
