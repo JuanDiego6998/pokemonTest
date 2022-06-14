@@ -1,26 +1,10 @@
-<h1 class="text-center title">{{title}}</h1>
 <div class="content">
-  <div fxLayout="row" fxLayoutAlign="space-between">
-    <div fxFlex="90" class="text-right">
-      <button mat-flat-button color="primary" class="btnNuevo" (click)="onCreateNew()">Nuevo</button>
+  <h3 class="text-left title">{{title}}</h3>
+  <div class="flex-container">
+    <div class="input-group">
+      <span class="material-icons md-18">search</span>
+      <input type="text" placeholder="Buscar" [(ngModel)]="searchTerm" (keyup)="onSearch()">
     </div>
-    <div fxFlex="10">
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Buscar</mat-label>
-          <input matInput placeholder="Escribe para buscar" [(ngModel)]="searchTerm" (keyup)="onSearch()">
-        </mat-form-field>
-      </p>
-    </div>
-  </div>
-  <div fxLayout="row">
-    <div fxFlex="100" class="text-center">
-      <app-pokemon-table (idToEdit)="onEdit($event)"></app-pokemon-table>
-    </div>
-  </div>
-  <div fxLayout="row" *ngIf="showForm">
-    <div fxFlex="100" class="form">
-      <app-pokemon-form (requestDone)="reloadPokemons($event)" [pokemonToEdit]="pokemonToEdit"></app-pokemon-form>
-    </div>
+    <button class="btnNuevo" (click)="onCreateNew()"><span class="material-icons md-18">add</span>Nuevo</button>
   </div>
 </div>

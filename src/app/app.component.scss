@@ -1,17 +1,50 @@
-.title{
-    padding-top: 2.5vh;
+.title {
+  padding-top: 2.5vh;
+  color: darkslategray;
+  font-weight: 500;
 }
 
-.btnNuevo{
-    margin-right: 1vw;
-    margin-top: 1vh;
+.btnNuevo {
+  background-color: darkslateblue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 0px; /* Some padding */
+  font-size: 18px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  min-width: 7.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
 }
 
-.content{
-    padding-left: 5vw;
-    padding-right: 5vw;
+.material-icons.md-18{
+  margin-right: 0.5vw;
 }
 
-.form{
-    margin-top: 2.5vh;
+.content {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.flex-container {
+  flex-direction: row;
+  justify-content: space-between;
+
+  .input-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid lightgray;
+    padding: 15px;
+    background-color: white;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 18px;
+  }
 }
