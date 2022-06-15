@@ -10,7 +10,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PokemonTableComponent implements OnInit {
   pokemons: Pokemon[] = [];
-  displayedColumns: string[] = ["name", "image", "attack", "defense", "actions"];
   pokemonsToDisplay: Pokemon[] = [];
 
   @Output() idToEdit = new EventEmitter<Pokemon>();

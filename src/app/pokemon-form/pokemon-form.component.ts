@@ -2,6 +2,7 @@ import { Pokemon } from './../pokemon-table/pokemon.model';
 import { PokemonApiService } from './../../services/pokemon-api.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PokemonListService } from 'src/services/pokemon-list.service';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -9,30 +10,27 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./pokemon-form.component.scss']
 })
 export class PokemonFormComponent implements OnInit {
-  types: string[] = ["Water", "Fire", "Normal", "Bug", "Poison"];
   pokemonForm!: FormGroup;
+  title = "Nuevo Pokemon";
 
   @Input() pokemonToEdit: Pokemon | null = null;
   @Output() requestDone = new EventEmitter<boolean>();
 
-  constructor(private pokemonApiService: PokemonApiService) { }
+  constructor(private pokemonApiService: PokemonApiService, private pokemonListService: PokemonListService) { }
 
   ngOnInit(): void {
     this.pokemonForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
-      type: new FormControl('', [Validators.required]),
-      hp: new FormControl(null, [Validators.required]),
       attack: new FormControl(null, [Validators.required]),
       defense: new FormControl(null, [Validators.required])
     });
 
     if(this.pokemonToEdit){
+      this.title = "Editar Pokemon";
       this.pokemonForm.setValue({
         name: this.pokemonToEdit.name,
         image: this.pokemonToEdit.image,
-        type: this.pokemonToEdit.type,
-        hp: this.pokemonToEdit.hp,
         attack: this.pokemonToEdit.attack,
         defense: this.pokemonToEdit.defense
       })
@@ -40,21 +38,28 @@ export class PokemonFormComponent implements OnInit {
   }
 
   onSubmit(){
-    const newPokemon: Pokemon = {
-      ...this.pokemonForm.value,
-      idAuthor: 2
-    };
-    if(this.pokemonToEdit){
-      this.pokemonApiService.updatePokemon(this.pokemonToEdit.id, newPokemon).subscribe(response => {
-        alert("Pokemon actualizado exitosamente");
-        this.requestDone.emit(true);
-      })
+    if(this.pokemonForm.valid){
+      const newPokemon: Pokemon = {
+        ...this.pokemonForm.value,
+        idAuthor: 2
+      };
+      if(this.pokemonToEdit){
+        this.pokemonApiService.updatePokemon(this.pokemonToEdit.id, newPokemon).subscribe(response => {
+          alert("Pokemon actualizado exitosamente");
+          this.requestDone.emit(true);
+        })
+      }else{
+        this.pokemonApiService.createPokemon(newPokemon).subscribe(response => {
+          alert("Pokemon creado exitosamente");
+          this.requestDone.emit(true);
+        });
+      }
     }else{
-      this.pokemonApiService.createPokemon(newPokemon).subscribe(response => {
-        alert("Pokemon creado exitosamente");
-        this.requestDone.emit(true);
-      });
+      this.pokemonForm.markAllAsTouched();
     }
   }
 
+  onCancel(){
+    this.pokemonListService.showForm.next(false);
+  }
 }

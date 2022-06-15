@@ -1,4 +1,33 @@
-<h3 class="text-center">Nuevo Pokemon</h3>
-<form [formGroup]="pokemonForm" (submit)="onSubmit()">
-    
-</form>
+<div class="pokemon-form">
+  <h3 class="text-center">{{title}}</h3>
+  <form [formGroup]="pokemonForm" (submit)="onSubmit()">
+    <div class="flex-container">
+      <div>
+        <label for="name">Nombre: </label>
+        <input type="text" id="name" formControlName="name" class="ms-3">
+      </div>
+      <div>
+        <label for="attack">Ataque: </label>
+        <span class="ms-3">1</span>
+        <input type="range" min="1" max="100" id="attack" formControlName="attack">
+        <span>100</span>
+      </div>
+    </div>
+    <div class="flex-container mt-3">
+      <div>
+        <label for="image">Imagen: </label>
+        <input type="text" id="image" placeholder="URL" formControlName="image" class="ms-4">
+      </div>
+      <div>
+        <label for="defense">Defensa: </label>
+        <span class="ms-3">1</span>
+        <input type="range" min="1" max="100" id="defense" formControlName="defense">
+        <span>100</span>
+      </div>
+    </div>
+    <div class="flex-container-center mt-3">
+      <button type="submit" class="btn me-3"><span class="material-icons md-18">save</span> Guardar</button>
+      <button class="btn" (click)="onCancel()"><span class="material-icons md-18">close</span> Cancelar</button>
+    </div>
+  </form>
+</div>

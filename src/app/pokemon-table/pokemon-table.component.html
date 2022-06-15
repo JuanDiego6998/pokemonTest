@@ -1,0 +1,19 @@
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <th>Imagen</th>
+    <th>Ataque</th>
+    <th>Defensa</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let pokemon of pokemonsToDisplay">
+    <td>{{pokemon.name}}</td>
+    <td class="text-center"><img src="{{pokemon.image}}" alt=""></td>
+    <td>{{pokemon.attack}}</td>
+    <td>{{pokemon.defense}}</td>
+    <td class="text-center">
+      <span class="material-icons" (click)="onEdit(pokemon)">edit</span>
+      <span class="material-icons" (click)="onDelete(pokemon)">delete</span>
+    </td>
+  </tr>
+</table>

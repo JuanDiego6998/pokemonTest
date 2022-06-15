@@ -1,13 +1,48 @@
-.pokemon-form{
-    padding-left: 5vw;
-    padding-right: 5vw;
+.pokemon-form {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-bottom: 5vh;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid lightgray;
+  margin-bottom: 5vh;
 }
 
-p{
-    margin-bottom: 0;
+.flex-container {
+  flex-direction: row;
+  justify-content: space-around;
+
+  input[type=text]{
+    border-radius: 5px;
+    border: 2px solid lightgray;
+    padding: 15px;
+    background-color: white;
+  }
+
+  input[type=range]{
+    accent-color: darkslateblue;
+  }
 }
 
-button{
-    margin-left: 1vw;
-    margin-right: 1vw;
+.flex-container-center{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  background-color: darkslateblue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  font-size: 18px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  min-width: 7.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.material-icons.md-18{
+  margin-right: 0.5vw;
 }

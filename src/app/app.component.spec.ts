@@ -1,16 +1,30 @@
+import { HttpClientModule } from '@angular/common/http';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PokemonApiService } from 'src/services/pokemon-api.service';
+import { PokemonListService } from 'src/services/pokemon-list.service';
 import { AppComponent } from './app.component';
+import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
+import { PokemonTableComponent } from './pokemon-table/pokemon-table.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        PokemonFormComponent,
+        PokemonTableComponent
       ],
+      providers: [PokemonListService, PokemonApiService]
     }).compileComponents();
   });
 
@@ -30,7 +44,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Listado de Pokemon');
+    expect(compiled.querySelector('h3')?.textContent).toContain('Listado de Pokemon');
   });
 
   it('should invoke onCreateNew on button click', fakeAsync(() => {
@@ -59,5 +73,15 @@ describe('AppComponent', () => {
     fixture.componentInstance.showForm = true;
     fixture.detectChanges();
     expect(compiled.querySelector('app-pokemon-form')).toBeTruthy();
+  });
+
+  it('should emit the searchTerm on type', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const listService = TestBed.inject(PokemonListService);
+    spyOn(listService.searchTerm, 'next');
+    app.searchTerm = 'test';
+    app.onSearch();
+    expect(listService.searchTerm.next).toHaveBeenCalledWith('test');
   });
 });

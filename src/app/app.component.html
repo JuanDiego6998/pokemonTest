@@ -7,4 +7,10 @@
     </div>
     <button class="btnNuevo" (click)="onCreateNew()"><span class="material-icons md-18">add</span>Nuevo</button>
   </div>
+  <div class="mt-3 w-100">
+    <app-pokemon-table (idToEdit)="onEdit($event)"></app-pokemon-table>
+  </div>
+  <div class="mt-3">
+    <app-pokemon-form *ngIf="showForm" (requestDone)="reloadPokemons($event)" [pokemonToEdit]="pokemonToEdit"></app-pokemon-form>
+  </div>
 </div>
