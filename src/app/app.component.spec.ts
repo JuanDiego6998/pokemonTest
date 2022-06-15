@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,6 +8,9 @@ import { PokemonListService } from 'src/services/pokemon-list.service';
 import { AppComponent } from './app.component';
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { PokemonTableComponent } from './pokemon-table/pokemon-table.component';
+import { Pokemon } from './pokemon-table/pokemon.model';
+
+const childComponent = jasmine.createSpyObj('PokemonTableComponent', ['loadPokemons']);
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -16,7 +19,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         BrowserModule
       ],
       declarations: [
@@ -83,5 +86,29 @@ describe('AppComponent', () => {
     app.searchTerm = 'test';
     app.onSearch();
     expect(listService.searchTerm.next).toHaveBeenCalledWith('test');
+  });
+
+  it('should set pokemonToEdit on onEdit', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const newPokemon: Pokemon = {
+      id: 1,
+      name: "test",
+      image: "url",
+      attack: 10,
+      defense: 10
+    }
+    app.onEdit(newPokemon);
+    expect(app.pokemonToEdit).toEqual(newPokemon);
+  });
+
+  it('should reload and hide form on reloadPokemons', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const event = true;
+    app.pokemonTableComponent = childComponent;
+    app.reloadPokemons(event);
+    expect(childComponent.loadPokemons).toHaveBeenCalled();
+    expect(app.showForm).toBeFalse();
   });
 });
