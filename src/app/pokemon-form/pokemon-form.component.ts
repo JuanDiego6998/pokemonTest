@@ -41,7 +41,7 @@ export class PokemonFormComponent implements OnInit {
     if(this.pokemonForm.valid){
       const newPokemon: Pokemon = {
         ...this.pokemonForm.value,
-        idAuthor: 2
+        idAuthor: 3
       };
       if(this.pokemonToEdit){
         this.pokemonApiService.updatePokemon(this.pokemonToEdit.id, newPokemon).subscribe(response => {

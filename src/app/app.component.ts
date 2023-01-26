@@ -27,6 +27,7 @@ export class AppComponent implements OnInit{
   }
 
   onCreateNew(){
+    this.pokemonToEdit = null;
     this.showForm = true;
   }
 
