@@ -32,7 +32,7 @@ describe('PokemonApiService', () => {
     spyOn(http, 'get');
     const id = 'test';
     service.getPokemons(id);
-    expect(http.get).toHaveBeenCalledWith(service.url + `/${id}`);
+    expect(http.get).toHaveBeenCalledWith(service.url + `/${id}`, {params: {idAuthor: 3}});
   });
 
   it('call post onCreatePokemon', () => {

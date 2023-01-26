@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  pokemonApiUrl: "https://pokemon-pichincha.herokuapp.com/pokemons"
+  pokemonApiUrl: "https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/pkm-msa-evaluation/pokemon"
 };
 
 /*

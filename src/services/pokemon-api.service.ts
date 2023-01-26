@@ -16,7 +16,7 @@ export class PokemonApiService{
             id = `/${id}`;
         }
 
-        return this.http.get(this.url + id);
+        return this.http.get(this.url + id, {params: {idAuthor: 3}});
     }
 
     createPokemon(pokemon: Pokemon){
